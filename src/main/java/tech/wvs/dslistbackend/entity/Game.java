@@ -1,4 +1,4 @@
-package tech.wvs.dslistbackend.entities;
+package tech.wvs.dslistbackend.entity;
 
 import jakarta.persistence.*;
 
