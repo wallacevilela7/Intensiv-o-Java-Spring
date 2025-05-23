@@ -1,6 +1,7 @@
 package tech.wvs.dslistbackend.dto;
 
 import tech.wvs.dslistbackend.entity.Game;
+import tech.wvs.dslistbackend.repository.projections.GameMinProjection;
 
 public class GameMinDto {
 
@@ -27,6 +28,14 @@ public class GameMinDto {
         this.year = entity.getYear();
         this.imgUrl = entity.getImgUrl();
         this.shortDescription = entity.getShortDescription();
+    }
+
+    public GameMinDto(GameMinProjection projection) {
+        this.id = projection.getId();
+        this.title = projection.getTitle();
+        this.year = projection.getYear();
+        this.imgUrl = projection.getImgUrl();
+        this.shortDescription = projection.getShortDescription();
     }
 
     public Long getId() {
