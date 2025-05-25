@@ -1,12 +1,10 @@
 package tech.wvs.dslistbackend.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tech.wvs.dslistbackend.dto.GameListDto;
 import tech.wvs.dslistbackend.dto.GameMinDto;
+import tech.wvs.dslistbackend.dto.ReplacementDto;
 import tech.wvs.dslistbackend.service.GameListService;
 import tech.wvs.dslistbackend.service.GameService;
 
@@ -32,5 +30,11 @@ public class GameListController {
     @GetMapping(path = "/{listId}/games")
     public ResponseEntity<List<GameMinDto>> findByList(@PathVariable("listId") Long listId) {
         return ResponseEntity.ok(gameService.findByList(listId));
+    }
+
+    @PostMapping(path = "/{listId}/replacement")
+    public void moveItem(@RequestBody ReplacementDto dto,
+                         @PathVariable("listId") Long listId) {
+        gameListService.move(listId, dto.getSourceIndex(), dto.getDestinationIndex());
     }
 }
